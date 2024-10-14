@@ -23,5 +23,24 @@ namespace RentalMotorbike
         {
             InitializeComponent();
         }
+
+        private void btnMotorbikeManagement_Click(object sender, RoutedEventArgs e)
+        {
+            MotorbikeManagementWindow motorbikeManagementWindow = new MotorbikeManagementWindow();
+            motorbikeManagementWindow.Show();
+            this.Hide();
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Xác nhận đăng xuất", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                this.Close();
+            }
+        }
     }
 }

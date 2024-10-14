@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using RentalMotorbike.BusinessObject.Entities;
+using RentalMotorbike.Repositories.Implements;
+using RentalMotorbike.Repositories.Interfaces;
 using RentalMotorbike.Services.Implements;
 using RentalMotorbike.Services.Interfaces;
 using System.Text;
@@ -21,12 +23,12 @@ namespace RentalMotorbike
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IUserService _userService;
+        private IUserRepository _userService;
 
         public MainWindow()
         {
             InitializeComponent();
-            _userService = new UserService();
+            _userService = new UserRepository();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

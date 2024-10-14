@@ -12,43 +12,28 @@ namespace RentalMotorbike.Repositories.Implements
     public class UserRepository : IUserRepository
     {
         public bool AddUser(User user)
-        {
-            return UserDAO.Instance.AddUser(user);
-        }
+            => UserDAO.Instance.AddUser(user);
 
         public User GetUserById(int userId)
-        {
-            return UserDAO.Instance.GetUserById(userId);
-        }
+            => UserDAO.Instance.GetUserById(userId);
 
         public User GetUserByUsername(string username)
-        {
-            return UserDAO.Instance.GetUserByUsername(username);
-        }
+            => UserDAO.Instance.GetUserByUsername(username);
 
         public User GetUserByEmail(string email)
-        {
-            return UserDAO.Instance.GetUserByEmail(email);
-        }
+            => UserDAO.Instance.GetUserByEmail(email);
 
         public User GetUserByEmailAndPassword(string email, string password)
-        {
-            return UserDAO.Instance.GetUserByEmailAndPassword(email, password);
-        }
+             => UserDAO.Instance.GetUserByEmailAndPassword(email, password);
 
         public List<User> GetAllUsers()
-        {
-            return UserDAO.Instance.GetAllUsers();
-        }
+           => UserDAO.Instance.GetAllUsers();
 
-        public bool RemoveUser(int userId)
-        {
-            return UserDAO.Instance.RemoveUser(userId);
-        }
+        public bool RemoveUser(int userId)    
+            =>  UserDAO.Instance.RemoveUser(userId);
 
         public bool UpdateUser(User user)
-        {
-            return UserDAO.Instance.UpdateUser(user);
-        }
+            => UserDAO.Instance.UpdateUser(user);
+       
     }
 }

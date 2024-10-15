@@ -1,4 +1,5 @@
-﻿using RentalMotorbike.BusinessObject;
+﻿using Microsoft.EntityFrameworkCore;
+using RentalMotorbike.BusinessObject;
 using RentalMotorbike.BusinessObject.Entities;
 using System;
 using System.Collections.Generic;
@@ -80,9 +81,15 @@ namespace RentalMotorbike.DAOs.Implements
         {
             return _context.Motorbikes.Where(m => m.Brand == brand).ToList();
         }
-        public List<Motorbike> GetMotorbikesByModel(string model)
+        public List<Motorbike> GetMotorbikesAvailableForCustomer(int userId)
         {
-            return _context.Motorbikes.Where(m => m.Model == model).ToList();
+            var rentalMotorbike = _context.Rentals.Include(m => m.Motorbike)
+                .Where(r => r.UserId == userId)
+               .Select(m => new { m.MotorbikeId, m.Motorbike.StatusId }).ToList();
+            return _context.Motorbikes
+                .Where(m => !rentalMotorbike.Any(rm => rm.MotorbikeId == m.MotorbikeId && rm.StatusId == 1))
+                .ToList();
         }
+        
     }
 }

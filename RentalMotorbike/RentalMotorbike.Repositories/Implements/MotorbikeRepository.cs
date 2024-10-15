@@ -23,5 +23,7 @@ namespace RentalMotorbike.Repositories.Implements
             => MotorbikeDAO.Instance.GetMotorbikeByLicensePlate(licensePlate);
         public List<Motorbike> GetAllMotorbikes() 
             => MotorbikeDAO.Instance.GetAllMotorbikes();
+        public List<Motorbike> GetMotorbikesAvailableForCustomer(int customerId) 
+            => MotorbikeDAO.Instance.GetMotorbikesAvailableForCustomer(customerId);
     }
 }

@@ -66,6 +66,8 @@ namespace RentalMotorbike
             }
             else if (user != null && txtPassword.Password.Equals(user.PasswordHash) && user.Role.RoleId == 3)
             {
+                int CustomerId = user.UserId;
+                AppState.CustomerId = CustomerId;
                 CustomerWindow customerWindow = new CustomerWindow();
                 customerWindow.Show();
                 this.Close();
@@ -74,6 +76,10 @@ namespace RentalMotorbike
             {
                 MessageBox.Show("Invalid email or password!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        public static class AppState
+        {
+            public static int CustomerId { get; set; }
 
         }
     }

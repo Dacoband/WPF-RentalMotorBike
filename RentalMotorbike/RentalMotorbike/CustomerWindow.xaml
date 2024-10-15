@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentalMotorbike"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="CustomerWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FF92619E" Offset="0.0" />
+                <GradientStop Color="#FFCC8D8D" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal" Margin="10,10,321,403">
+            <TextBlock Text="Search by Branch:" VerticalAlignment="Center" FontWeight="Bold"/>
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5,0" TextChanged="SearchTextBox_TextChanged"/>
+            <Button Content="Search" Width="75" Margin="5,0" Click="SearchButton_Click"/>
+        </StackPanel>
+        <DataGrid x:Name="MotorbikeDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10,36,10,123" SelectionChanged="MotorbikeDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*"/>
+                <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="*"/>
+                <DataGridTextColumn Header="License Plate" Binding="{Binding LicensePlate}" Width="*"/>
+                <DataGridTextColumn Header="Rental Price" Binding="{Binding RentalPricePerDay}" Width="Auto"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding StatusId}" Width="Auto"/>
+                <DataGridTemplateColumn Header="Action" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Thuê Xe" Click="RentalButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="HistoryButton" Content="Lịch sử thuê xe" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" Margin="590,0,0,95" Click="HistoryButton_Click" Height="28"/>
     </Grid>
 </Window>

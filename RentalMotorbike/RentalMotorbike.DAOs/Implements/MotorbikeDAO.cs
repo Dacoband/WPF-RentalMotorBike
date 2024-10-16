@@ -83,13 +83,18 @@ namespace RentalMotorbike.DAOs.Implements
         }
         public List<Motorbike> GetMotorbikesAvailableForCustomer(int userId)
         {
-            var rentalMotorbike = _context.Rentals.Include(m => m.Motorbike)
+            // Lấy danh sách motorbike mà người dùng đã thuê
+            var rentedMotorbikes = _context.Rentals
                 .Where(r => r.UserId == userId)
-               .Select(m => new { m.MotorbikeId, m.Motorbike.StatusId }).ToList();
+                .Select(r => r.MotorbikeId)
+                .ToList();
+
+            // Lấy những motorbike có StatusId = 1 và không nằm trong danh sách đã thuê
             return _context.Motorbikes
-                .Where(m => !rentalMotorbike.Any(rm => rm.MotorbikeId == m.MotorbikeId && rm.StatusId == 1))
+                .Where(m => m.StatusId == 1 && !rentedMotorbikes.Contains(m.MotorbikeId))
                 .ToList();
         }
-        
+
+
     }
 }

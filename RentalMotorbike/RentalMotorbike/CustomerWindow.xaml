@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentalMotorbike"
         mc:Ignorable="d"
-        Loaded="Window_Loaded"
+        Loaded="Window_Loaded2"
         Title="CustomerWindow" Height="450" Width="800">
     <Grid>
         <Grid.Background>
@@ -19,7 +19,7 @@
             <TextBox x:Name="SearchTextBox" Width="200" Margin="5,0" TextChanged="SearchTextBox_TextChanged"/>
             <Button Content="Search" Width="75" Margin="5,0" Click="SearchButton_Click"/>
         </StackPanel>
-        <DataGrid x:Name="MotorbikeDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10,36,10,123" SelectionChanged="MotorbikeDataGrid_SelectionChanged">
+        <DataGrid x:Name="MotorbikeDataGrid2" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10,36,10,123" SelectionChanged="MotorbikeDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*"/>
                 <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="*"/>

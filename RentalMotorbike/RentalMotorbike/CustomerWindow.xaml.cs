@@ -33,15 +33,14 @@ namespace RentalMotorbike
             _customerRepository = new UserRepository();
             _motorbikeRepository = new MotorbikeRepository();
             _rentalRepository = new RentalRepository();
-            LoadMotorbikeNotRental();
             currentCustomerId = AppState.CustomerId;
         }
         private void MotorbikeDataGrid_SelectionChanged()
         {
             try
             {
-                var motorbike = _motorbikeRepository.GetAllMotorbikes();
-                MotorbikeDataGrid.ItemsSource = motorbike;
+                var motorbike = _motorbikeRepository.GetMotorbikesAvailableForCustomer(currentCustomerId);
+                MotorbikeDataGrid2.ItemsSource = motorbike;
             }
             catch (Exception ex)
             {
@@ -54,29 +53,17 @@ namespace RentalMotorbike
             
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded2(object sender, RoutedEventArgs e)
         {
             MotorbikeDataGrid_SelectionChanged();
         }
 
-        private void LoadMotorbikeNotRental()
-        {
-            try
-            {
-                
-                var availableMotorbike = _motorbikeRepository.GetMotorbikesAvailableForCustomer(currentCustomerId);
-                MotorbikeDataGrid.ItemsSource = availableMotorbike;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
         private void RentalButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if(MotorbikeDataGrid.SelectedItem is Motorbike selectedMotorbike)
+                if(MotorbikeDataGrid2.SelectedItem is Motorbike selectedMotorbike)
                 {
                     var rental = new Rental
                     {
@@ -86,12 +73,15 @@ namespace RentalMotorbike
                         EndDate = DateTime.Now.AddDays(1),
                         TotalPrice = selectedMotorbike.RentalPricePerDay,
                     };
+                    var Motorbike = _motorbikeRepository.GetMotorbikeById(selectedMotorbike.MotorbikeId);
+                    Motorbike.StatusId = 3;
+                    _motorbikeRepository.UpdateMotorbike(Motorbike);
                     _rentalRepository.AddRental(rental);
                     MessageBox.Show($"Rental successfully : {selectedMotorbike.LicensePlate}");
-                    var motorbike = (List<Motorbike>)MotorbikeDataGrid.ItemsSource;
+                    var motorbike = (List<Motorbike>)MotorbikeDataGrid2.ItemsSource;
                     motorbike.Remove(selectedMotorbike);
-                    MotorbikeDataGrid.ItemsSource = null;
-                    MotorbikeDataGrid.ItemsSource = motorbike;
+                    MotorbikeDataGrid2.ItemsSource = null;
+                    MotorbikeDataGrid2.ItemsSource = motorbike;
                 }
                 else
                 {
@@ -117,7 +107,7 @@ namespace RentalMotorbike
             m.Brand.ToLower().Contains(searchMotorbike) ||
             m.Model.ToLower().Contains(searchMotorbike) ||
             m.LicensePlate.ToLower().Contains(searchMotorbike)).ToList();
-            MotorbikeDataGrid.ItemsSource = motorbikes;
+            MotorbikeDataGrid2.ItemsSource = motorbikes;
         }
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -7,7 +7,14 @@
         mc:Ignorable="d"
         Title="AdminProfileWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnMotorbikeManagement" Content="Motorbike Management" Click="btnMotorbikeManagement_Click" Margin="126,144,550,243" Background="#FF8ADA55" />
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FF92619E" Offset="0.0" />
+                <GradientStop Color="#FFCC8D8D" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Button x:Name="btnMotorbikeManagement" Content="Motorbike Management" Click="btnMotorbikeManagement_Click" Margin="77,81,550,284" Background="#FF8ADA55" />
         <Button x:Name="btnLogout" Content="Đăng xuất" Click="btnLogout_Click" Margin="632,366,51,27" Background="#FFED4848" />
+        <Button x:Name="btnCustomerManagement" Content="Customer Management" Click="btnCustomerManagement_Click" Margin="291,81,336,284" Background="#FF8ADA"/>
     </Grid>
 </Window>

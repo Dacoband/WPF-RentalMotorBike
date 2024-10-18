@@ -55,23 +55,28 @@ namespace RentalMotorbike.DAOs.Implements
             return _context.Users.ToList();
         }
 
-        public bool AddUser(User user)
+        public bool AddCustomer(User user)
         {
             bool isSuccess = false;
             try
             {
+                if (user.RoleId == 0)
+                {
+                    user.RoleId = 3; 
+                }
+
                 _context.Users.Add(user);
                 _context.SaveChanges();
                 isSuccess = true;
             }
             catch (Exception e)
             {
-              
+                Console.WriteLine($"Error adding user: {e.Message}");
             }
             return isSuccess;
         }
 
-        public bool RemoveUser(int userId)
+        public bool RemoveCustomer(int userId)
         {
             bool isSuccess = false;
             try
@@ -91,7 +96,7 @@ namespace RentalMotorbike.DAOs.Implements
             return isSuccess;
         }
 
-        public bool UpdateUser(User user)
+        public bool UpdateCustomer(User user)
         {
             bool isSuccess = false;
             try

@@ -88,13 +88,10 @@ namespace RentalMotorbike.DAOs.Implements
                 .Where(r => r.UserId == userId)
                 .Select(r => r.MotorbikeId)
                 .ToList();
-
             // Lấy những motorbike có StatusId = 1 và không nằm trong danh sách đã thuê
             return _context.Motorbikes
                 .Where(m => m.StatusId == 1 && !rentedMotorbikes.Contains(m.MotorbikeId))
                 .ToList();
         }
-
-
     }
 }

@@ -11,8 +11,8 @@ namespace RentalMotorbike.Repositories.Implements
 {
     public class UserRepository : IUserRepository
     {
-        public bool AddUser(User user)
-            => UserDAO.Instance.AddUser(user);
+        public bool AddCustomer(User user)
+            => UserDAO.Instance.AddCustomer(user);
 
         public User GetUserById(int userId)
             => UserDAO.Instance.GetUserById(userId);
@@ -29,11 +29,13 @@ namespace RentalMotorbike.Repositories.Implements
         public List<User> GetAllUsers()
            => UserDAO.Instance.GetAllUsers();
 
-        public bool RemoveUser(int userId)    
-            =>  UserDAO.Instance.RemoveUser(userId);
+        public bool RemoveCustomer(int userId)    
+            =>  UserDAO.Instance.RemoveCustomer(userId);
 
-        public bool UpdateUser(User user)
-            => UserDAO.Instance.UpdateUser(user);
-       
+        public bool UpdateCustomer(User user)
+            => UserDAO.Instance.UpdateCustomer(user);
+        public List<User> GetCustomers()
+            => UserDAO.Instance.GetAllUsers().Where(u => u.RoleId == 3).ToList();
+
     }
 }

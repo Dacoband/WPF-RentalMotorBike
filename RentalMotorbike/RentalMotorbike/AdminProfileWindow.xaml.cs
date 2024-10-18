@@ -42,5 +42,12 @@ namespace RentalMotorbike
                 this.Close();
             }
         }
+
+        private void btnCustomerManagement_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerManagementWindow customerManagementWindow = new CustomerManagementWindow();
+            customerManagementWindow.Show();
+            this.Hide();
+        }
     }
 }

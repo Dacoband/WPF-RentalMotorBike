@@ -65,16 +65,27 @@ namespace RentalMotorbike
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CustomerDataGrid_SelectionChanged();
+            try
+            {
+                var customers = _userRepository.GetCustomers();
+                CustomerDataGrid.ItemsSource = customers;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string searchCustomer = SearchTextBox.Text.ToLower();
-            var allCustomer = _userRepository.GetCustomers;
-            var customer = allCustomer.GetType().GetProperties().Where(p => p.GetValue(allCustomer).ToString().ToLower().Contains(searchCustomer)).ToList();
+            var allCustomers = _userRepository.GetCustomers(); 
+            var customers = allCustomers.Where(c =>
+                c.Username.ToLower().Contains(searchCustomer) ||
+                c.Email.ToLower().Contains(searchCustomer)
+            ).ToList();
 
-            CustomerDataGrid.ItemsSource = customer;
+            CustomerDataGrid.ItemsSource = customers;
         }
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -83,17 +94,64 @@ namespace RentalMotorbike
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            User newCustomer = new User
+            {
+                Username = txtUserName.Text,
+                PasswordHash = txtPassword.Text,
+                Email = txtEmail.Text,
+                RoleId = 3 
+            };
 
+            bool isSuccess = _userRepository.AddCustomer(newCustomer);
+            if (isSuccess)
+            {
+                MessageBox.Show("Customer added successfully!");
+                ClearInputFields();
+                Window_Loaded(sender, e); 
+            }
+            else
+            {
+                MessageBox.Show("Failed to add customer.");
+            }
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            if (CustomerDataGrid.SelectedItem is User selectedCustomer)
+            {
+                selectedCustomer.Username = txtUserName.Text;
+                selectedCustomer.PasswordHash = txtPassword.Text;
+                selectedCustomer.Email = txtEmail.Text;
 
+                bool isSuccess = _userRepository.UpdateCustomer(selectedCustomer);
+                if (isSuccess)
+                {
+                    MessageBox.Show("Customer updated successfully!");
+                    ClearInputFields();
+                    Window_Loaded(sender, e); 
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update customer.");
+                }
+            }
         }
-
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (CustomerDataGrid.SelectedItem is User selectedCustomer)
+            {
+                bool isSuccess = _userRepository.RemoveCustomer(selectedCustomer.UserId);
+                if (isSuccess)
+                {
+                    MessageBox.Show("Customer deleted successfully!");
+                    ClearInputFields();
+                    Window_Loaded(sender, e); 
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete customer.");
+                }
+            }
         }
     }
 }

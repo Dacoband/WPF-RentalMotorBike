@@ -1,38 +1,24 @@
-name: WPF Build & Test
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
 jobs:
   build:
-
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
-
     runs-on: windows-latest
 
     steps:
     - name: Checkout
       uses: actions/checkout@v4
 
-    # Install the .NET SDK
-    - name: Setup .NET SDK
+    - name: Set up .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: '8.0.x'
 
-    # Restore dependencies
+    - name: Change directory to solution
+      run: cd D:\FPT_Learning\PRN221\WPF-RentalMotorBike
+
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore WPF-RentalMotorBike.sln
 
-    # Build the project
     - name: Build the solution
-      run: dotnet build --configuration ${{ matrix.configuration }} --no-restore
+      run: dotnet build WPF-RentalMotorBike.sln --configuration Release --no-restore
 
-    # Execute unit tests
-    - name: Run tests
-      run: dotnet test --configuration ${{ matrix.configuration }}
+    - name: Run unit tests
+      run: dotnet test WPF-RentalMotorBike.sln --no-build --verbosity normal

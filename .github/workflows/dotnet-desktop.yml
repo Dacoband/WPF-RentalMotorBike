@@ -19,14 +19,17 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    - name: List files in src
+      run: dir ./src # Liệt kê các tệp trong thư mục src
+
     - name: Restore dependencies
-      run: dotnet restore ./src/RentalMotorbike.sln # Cập nhật đường dẫn cho đúng
+      run: dotnet restore ./src/RentalMotorbike.sln # Đường dẫn tới tệp giải pháp
 
     - name: Build the solution
-      run: dotnet build ./src/RentalMotorbike.sln --configuration Release --no-restore # Cập nhật đường dẫn cho đúng
+      run: dotnet build ./src/RentalMotorbike.sln --configuration Release --no-restore
 
     - name: Run unit tests
-      run: dotnet test ./src/RentalMotorbike.sln --no-build --verbosity normal # Cập nhật đường dẫn cho đúng
+      run: dotnet test ./src/RentalMotorbike.sln --no-build --verbosity normal
 
     - name: List files
       run: dir ./src # Kiểm tra các tệp trong thư mục src

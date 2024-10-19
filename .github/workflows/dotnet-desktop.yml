@@ -1,11 +1,10 @@
 name: .NET Core Desktop Build
 
-# Define event triggers
 on:
   push:
-    branches: [ "main" ] # Trigger when there is a push to the "main" branch
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ] # Trigger when a pull request is opened or updated on the "main" branch
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -20,14 +19,11 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Change directory to solution
-      run: cd D:\FPT_Learning\PRN221\WPF-RentalMotorBike
-
     - name: Restore dependencies
-      run: dotnet restore WPF-RentalMotorBike.sln
+      run: dotnet restore ./RentalMotorbike.sln
 
     - name: Build the solution
-      run: dotnet build WPF-RentalMotorBike.sln --configuration Release --no-restore
+      run: dotnet build ./RentalMotorbike.sln --configuration Release --no-restore
 
     - name: Run unit tests
-      run: dotnet test WPF-RentalMotorBike.sln --no-build --verbosity normal
+      run: dotnet test ./RentalMotorbike.sln --no-build --verbosity normal

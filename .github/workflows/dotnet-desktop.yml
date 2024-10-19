@@ -27,3 +27,12 @@ jobs:
 
     - name: Run unit tests
       run: dotnet test ./RentalMotorbike.sln --no-build --verbosity normal
+
+    - name: Publish the application
+      run: dotnet publish ./RentalMotorbike.sln --configuration Release --output ./output
+
+    - name: Archive the output
+      uses: actions/upload-artifact@v3
+      with:
+        name: RentalMotorbike
+        path: ./output

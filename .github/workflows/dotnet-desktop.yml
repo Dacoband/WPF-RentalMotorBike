@@ -19,8 +19,6 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: List files in src
-      run: dir ./src # Liệt kê các tệp trong thư mục src
 
     - name: Restore dependencies
       run: dotnet restore ./src/RentalMotorbike.sln # Đường dẫn tới tệp giải pháp

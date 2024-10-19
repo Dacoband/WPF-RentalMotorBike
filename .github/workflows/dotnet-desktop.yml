@@ -20,19 +20,13 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore ./RentalMotorbike.sln
+      run: dotnet restore ./src/RentalMotorbike.sln # Cập nhật đường dẫn cho đúng
 
     - name: Build the solution
-      run: dotnet build ./RentalMotorbike.sln --configuration Release --no-restore
+      run: dotnet build ./src/RentalMotorbike.sln --configuration Release --no-restore # Cập nhật đường dẫn cho đúng
 
     - name: Run unit tests
-      run: dotnet test ./RentalMotorbike.sln --no-build --verbosity normal
+      run: dotnet test ./src/RentalMotorbike.sln --no-build --verbosity normal # Cập nhật đường dẫn cho đúng
 
-    - name: Publish the application
-      run: dotnet publish ./RentalMotorbike.sln --configuration Release --output ./output
-
-    - name: Archive the output
-      uses: actions/upload-artifact@v3
-      with:
-        name: RentalMotorbike
-        path: ./output
+    - name: List files
+      run: dir ./src # Kiểm tra các tệp trong thư mục src

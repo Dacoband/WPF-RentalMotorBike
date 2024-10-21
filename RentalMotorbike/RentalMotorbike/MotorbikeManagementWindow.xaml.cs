@@ -105,6 +105,7 @@ namespace RentalMotorbike
                     StatusId = Convert.ToInt32(txtStatus.Text)
                 };
                 _motorbikeRepository.AddMotorbike(motorbike);
+                MessageBox.Show("Add Motorbike successfully !");
             }
             catch (Exception ex)
             {
@@ -132,6 +133,7 @@ namespace RentalMotorbike
                     selectedMotorbike.StatusId = Convert.ToInt32(txtStatus.Text);
                     _motorbikeRepository.UpdateMotorbike(selectedMotorbike);
                 }
+                MessageBox.Show("Update Motorbike successfully !");
             }
             catch (Exception ex)
             {
@@ -157,6 +159,7 @@ namespace RentalMotorbike
                     selectedMotorbike.StatusId = Convert.ToInt32(txtStatus.Text);
                     _motorbikeRepository.RemoveMotorbike(selectedMotorbike.MotorbikeId);
                 }
+                MessageBox.Show("Delete Motorbike successfully !");
             }
             catch (Exception ex)
             {

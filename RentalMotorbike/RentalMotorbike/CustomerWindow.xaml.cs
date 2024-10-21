@@ -96,7 +96,9 @@ namespace RentalMotorbike
 
         private void HistoryButton_Click(object sender, RoutedEventArgs e)
         {
-
+            RentalWindow rentalWindow = new RentalWindow();
+            rentalWindow.ShowDialog();
+            this.Hide();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)

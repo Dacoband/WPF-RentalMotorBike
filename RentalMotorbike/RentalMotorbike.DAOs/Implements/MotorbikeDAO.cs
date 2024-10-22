@@ -64,12 +64,20 @@ namespace RentalMotorbike.DAOs.Implements
 
         public void RemoveMotorbike(int motorbikeId)
         {
-                var motorbike = _context.Motorbikes.SingleOrDefault(m => m.MotorbikeId == motorbikeId);
-                if (motorbike != null)
+            var motorbike = _context.Motorbikes
+             .Include(m => m.Rentals) 
+             .SingleOrDefault(m => m.MotorbikeId == motorbikeId);
+
+            if (motorbike != null)
+            {
+                foreach (var rental in motorbike.Rentals.ToList())
                 {
-                    _context.Motorbikes.Remove(motorbike);
-                    _context.SaveChanges();
+                    _context.Rentals.Remove(rental);
                 }
+
+                _context.Motorbikes.Remove(motorbike);
+                _context.SaveChanges();
+            }
         }
 
         public List<Motorbike> GetMotorbikesByStatus(int statusId)

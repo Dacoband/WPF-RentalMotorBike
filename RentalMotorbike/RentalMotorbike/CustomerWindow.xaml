@@ -35,6 +35,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="HistoryButton" Content="Lịch sử thuê xe" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" Margin="590,0,0,95" Click="HistoryButton_Click" Height="28"/>
+        <Button x:Name="HistoryButton" Content="Lịch sử thuê xe" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" Margin="590,0,0,79" Click="HistoryButton_Click" Height="28" Background="BlueViolet"/>
+        <Button x:Name="btnLogout" Content="Đăng xuất" Click="btnLogout_Click" Margin="673,383,10,10" Background="#FFED4848" />
     </Grid>
 </Window>

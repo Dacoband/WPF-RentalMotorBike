@@ -52,5 +52,13 @@ namespace RentalMotorbike
         {
 
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerWindow customerWindow = new CustomerWindow();
+            customerWindow.Show();
+
+            this.Hide();
+        }
     }
 }

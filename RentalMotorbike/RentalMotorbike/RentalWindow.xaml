@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RentalMotorbike"
         mc:Ignorable="d"
         Title="RentalWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="0,0,0,2">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -24,14 +24,12 @@
         <DataGrid x:Name="dgRentalMotorbike" 
                   AutoGenerateColumns="False" 
                   Grid.Row="1" 
-                  HorizontalAlignment="Stretch" 
-                  VerticalAlignment="Stretch" 
                   AlternatingRowBackground="LightGray" 
                   Background="White" 
                   RowBackground="White" 
                   BorderBrush="#2C3E50" 
                   BorderThickness="1"
-                  Margin="10" SelectionChanged="dgRentalMotorbike_SelectionChanged">
+                  Margin="10,10,10,98" SelectionChanged="dgRentalMotorbike_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Motorbike ID" Binding="{Binding MotorbikeId}" Width="*"/>
@@ -42,5 +40,6 @@
                 <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Back" Width="100" Height="30" Click="BackButton_Click" Margin="690,340,10,10" Background="Yellow" Grid.Row="1"/>
     </Grid>
 </Window>

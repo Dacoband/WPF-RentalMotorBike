@@ -5,21 +5,77 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentalMotorbike"
         mc:Ignorable="d"
-        Title="" Height="355" Width="673"
+        Title="Login" Height="355" Width="500"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None">
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
 
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#FF2196F3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" 
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1976D2"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF1565C0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-        <GroupBox Header="Login" Margin="101,60,109,71"/>
-        <Label Content="Email                " HorizontalAlignment="Left" Margin="135,130,0,0" VerticalAlignment="Top" Height="26" Width="38"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="135,174,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="214,134,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="309" />
-        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="403,230,0,0" VerticalAlignment="Top" Height="30" Width="120" BorderBrush="#FF654B4B" Background="#FFA7E0F7" Click="btnLogin_Click"/>
-        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="214,178,0,0" VerticalAlignment="Top" Width="309"/>
-        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="214,230,0,0" VerticalAlignment="Top" Height="30" Width="122" Click="btnExit_Click"/>
+        <Border Background="#CCFFFFFF" CornerRadius="10" Padding="20" BorderBrush="#FF2196F3" BorderThickness="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Login to Your Account" FontSize="20" FontWeight="Bold" Foreground="#FF2196F3" 
+                           HorizontalAlignment="Center" Margin="0,10,0,20"/>
+
+                <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                    <Label Content="Email" FontSize="14" FontWeight="SemiBold" Foreground="#FF333333" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtEmail" Width="300" Height="30" 
+                             Margin="0,0,0,15" 
+                             BorderBrush="#FF2196F3" Background="#FFF0F0F0"
+                             VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                    <Label Content="Password" FontSize="14" FontWeight="SemiBold" Foreground="#FF333333" Margin="0,0,0,5"/>
+                    <PasswordBox x:Name="txtPassword" Width="300" Height="30" 
+                                 Margin="0,0,0,15"
+                                 BorderBrush="#FF2196F3" Background="#FFF0F0F0"
+                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                        <Button x:Name="btnLogin" Content="Login" Width="120" Height="35" 
+                                Margin="0,0,10,0" 
+                                Background="#FF2196F3" Foreground="White"
+                                BorderBrush="#FF2196F3" Click="btnLogin_Click"
+                                FontWeight="Bold" Style="{StaticResource ButtonStyle}"/>
+                        <Button x:Name="btnExit" Content="Exit" Width="120" Height="35"
+                                Background="#FFE57373" Foreground="White"
+                                BorderBrush="#FFE57373" Click="btnExit_Click"
+                                FontWeight="Bold" Style="{StaticResource ButtonStyle}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

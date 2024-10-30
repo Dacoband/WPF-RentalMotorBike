@@ -3,18 +3,70 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RentalMotorbike"
         mc:Ignorable="d"
-        Title="AdminProfileWindow" Height="450" Width="800">
+        Title="Admin Profile" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Style for buttons -->
+        <Style x:Key="StyledButton" TargetType="Button">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="BorderBrush" Value="#FF7B417B"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF6D3C6D"/>
+                                <Setter Property="BorderBrush" Value="#FF6D3C6D"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF552554"/>
+                                <Setter Property="BorderBrush" Value="#FF552554"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#FF92619E" Offset="0.0" />
-                <GradientStop Color="#FFCC8D8D" Offset="1.0" />
+                <GradientStop Color="#FF7B417B" Offset="1.0" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="btnMotorbikeManagement" Content="Motorbike Management" Click="btnMotorbikeManagement_Click" Margin="77,81,550,284" Background="#FF8ADA55" />
-        <Button x:Name="btnLogout" Content="Đăng xuất" Click="btnLogout_Click" Margin="632,366,51,27" Background="#FFED4848" />
-        <Button x:Name="btnCustomerManagement" Content="Customer Management" Click="btnCustomerManagement_Click" Margin="291,81,336,284" Background="#FF8ADA"/>
+
+        <!-- Title Text -->
+        <TextBlock Text="Admin Dashboard" FontSize="24" FontWeight="Bold" Foreground="White" 
+                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"/>
+
+        <!-- Buttons -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
+            <Button x:Name="btnMotorbikeManagement" Content="Motorbike Management" 
+                    Click="btnMotorbikeManagement_Click" 
+                    Style="{StaticResource StyledButton}" 
+                    Background="#FF8ADA55"/>
+
+            <Button x:Name="btnCustomerManagement" Content="Customer Management" 
+                    Click="btnCustomerManagement_Click" 
+                    Style="{StaticResource StyledButton}" 
+                    Background="#FF8ADA"/>
+
+            <Button x:Name="btnLogout" Content="Đăng xuất" 
+                    Click="btnLogout_Click" 
+                    Style="{StaticResource StyledButton}" 
+                    Background="#FFED4848"/>
+        </StackPanel>
     </Grid>
 </Window>

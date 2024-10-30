@@ -6,20 +6,35 @@
         xmlns:local="clr-namespace:RentalMotorbike"
         mc:Ignorable="d"
         Loaded="Window_Loaded2"
-        Title="CustomerWindow" Height="450" Width="800">
-    <Grid>
+        Title="Customer Window" Height="450" Width="800" Background="#f2f4f5">
+    <Grid Margin="10">
+        <!-- Gradient Background -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FF92619E" Offset="0.0" />
-                <GradientStop Color="#FFCC8D8D" Offset="1.0" />
+                <GradientStop Color="#FF6a5acd" Offset="0.0" />
+                <GradientStop Color="#FF92619E" Offset="1.0" />
             </LinearGradientBrush>
         </Grid.Background>
-        <StackPanel Orientation="Horizontal" Margin="10,10,321,403">
-            <TextBlock Text="Search by Branch:" VerticalAlignment="Center" FontWeight="Bold"/>
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="5,0" TextChanged="SearchTextBox_TextChanged"/>
-            <Button Content="Search" Width="75" Margin="5,0" Click="SearchButton_Click"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Left">
+            <TextBlock Text="Search by Branch:" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5,0"
+                     TextChanged="SearchTextBox_TextChanged" Padding="5" Background="White" Foreground="Black"
+                     BorderBrush="#3c6e71" BorderThickness="1" />
+            <Button Content="Search" Width="80" Click="SearchButton_Click"
+                    Margin="5,0,0,0" Background="#3c6e71" Foreground="White"
+                    FontWeight="Bold" BorderBrush="Transparent"/>
         </StackPanel>
-        <DataGrid x:Name="MotorbikeDataGrid2" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10,36,10,123" SelectionChanged="MotorbikeDataGrid_SelectionChanged">
+
+        <DataGrid x:Name="MotorbikeDataGrid2" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False"
+                  Margin="10,0,10,10" Background="White" RowBackground="#e0e0e0" AlternatingRowBackground="#f2f4f5"
+                  HorizontalGridLinesBrush="#3c6e71" VerticalGridLinesBrush="#3c6e71">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*"/>
                 <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="*"/>
@@ -29,13 +44,22 @@
                 <DataGridTemplateColumn Header="Action" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Thuê Xe" Click="RentalButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Button Content="Thuê Xe" Click="RentalButton_Click" 
+                                    Background="#4CAF50" Foreground="White" FontWeight="Bold"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="70" BorderBrush="Transparent"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="HistoryButton" Content="Lịch sử thuê xe" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" Margin="590,0,0,79" Click="HistoryButton_Click" Height="28" Background="BlueViolet"/>
-        <Button x:Name="btnLogout" Content="Đăng xuất" Click="btnLogout_Click" Margin="673,383,10,10" Background="#FFED4848" />
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button x:Name="HistoryButton" Content="Lịch sử thuê xe" Width="150" Height="30"
+                    Click="HistoryButton_Click" Background="#7b68ee" Foreground="White"
+                    FontWeight="Bold" Margin="10,0" BorderBrush="Transparent"/>
+            <Button x:Name="btnLogout" Content="Đăng xuất" Width="100" Height="30"
+                    Click="btnLogout_Click" Background="#ff4d4d" Foreground="White"
+                    FontWeight="Bold" Margin="10,0" BorderBrush="Transparent"/>
+        </StackPanel>
     </Grid>
 </Window>

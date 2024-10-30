@@ -179,5 +179,23 @@ namespace RentalMotorbike
 
             this.Hide();
         }
+        private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SearchTextBox.Text == "Search by Brand, Model, or License Plate")
+            {
+                SearchTextBox.Text = string.Empty;
+                SearchTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SearchTextBox.Text))
+            {
+                SearchTextBox.Text = "Search by Brand, Model, or License Plate";
+                SearchTextBox.Foreground = Brushes.Gray;
+            }
+        }
+
     }
 }

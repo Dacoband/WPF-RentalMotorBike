@@ -6,71 +6,83 @@
         xmlns:local="clr-namespace:RentalMotorbike"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="MotorbikeManagementWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FF92619E" Offset="0.0" />
-                <GradientStop Color="#FFCC8D8D" Offset="1.0" />
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="711*"/>
-            <ColumnDefinition Width="89*"/>
-        </Grid.ColumnDefinitions>
+        Title="MotorbikeManagementWindow" Height="806" Width="690">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="10,10,10,10" Grid.ColumnSpan="2">
-            <TextBlock Text="Search by Branch:" VerticalAlignment="Center" FontWeight="Bold"/>
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="5,0" TextChanged="SearchTextBox_TextChanged"/>
-            <Button Content="Search" Width="75" Margin="5,0" Click="SearchButton_Click"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Back" Width="80" Click="BackButton_Click" 
+                    Background="#f05454" Foreground="White" FontWeight="Bold"
+                    BorderBrush="Transparent" Padding="5,2" />
         </StackPanel>
 
-
-        <StackPanel Orientation="Vertical" Grid.Row="2" Margin="10,10,10,10" Grid.ColumnSpan="2">
-            <TextBlock Text="Add/Update Motorbike Information`:" FontWeight="Bold" Margin="0,0,0,5"/>
-
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Brand:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <TextBox x:Name="txtBrand" Width="200" Margin="5,0" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Model:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <TextBox x:Name="txtModel" Width="200" Margin="5,0" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="License Plate:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <TextBox x:Name="txtLicensePlate" Width="200" Margin="5,0" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Rental Price / 1 day:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <TextBox x:Name="txtRentalPrice" Width="100" Margin="5,0" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Status:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <TextBox x:Name="txtStatus" Width="100" Margin="5,0" />
-            </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+            <TextBox x:Name="SearchTextBox" Width="300" Height="30" 
+                     Text="Search by Brand, Model, or License Plate"
+                     Foreground="Gray" VerticalAlignment="Center"
+                     Background="White" Padding="5"
+                     GotFocus="SearchTextBox_GotFocus" 
+                     LostFocus="SearchTextBox_LostFocus"/>
+            <Button Content="Search" Width="80" Click="SearchButton_Click"
+                    Margin="10,0,0,0" Background="#3c6e71" Foreground="White"
+                    FontWeight="Bold" Padding="5,2" BorderBrush="Transparent"/>
         </StackPanel>
 
-        <DataGrid x:Name="MotorbikeDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="10,10,10,10" SelectionChanged="MotorbikeDataGrid_SelectionChanged" Grid.ColumnSpan="2">
+        <DataGrid x:Name="MotorbikeDataGrid" Grid.Row="1" Margin="0,10,0,10"
+                  AutoGenerateColumns="False" 
+                  SelectionChanged="MotorbikeDataGrid_SelectionChanged"
+                  Background="White" RowBackground="#e0e0e0" AlternatingRowBackground="#f2f4f5"
+                  HorizontalGridLinesBrush="#3c6e71" VerticalGridLinesBrush="#3c6e71">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Motorbike ID" Binding="{Binding MotorbikeId}" Width="*"/>
                 <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*"/>
                 <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="*"/>
-                <DataGridTextColumn Header="LicensePlate" Binding="{Binding LicensePlate}" Width="*"/>
-                <DataGridTextColumn Header="Retanl Price" Binding="{Binding RentalPricePerDay}" Width="*"/>
+                <DataGridTextColumn Header="License Plate" Binding="{Binding LicensePlate}" Width="*"/>
+                <DataGridTextColumn Header="Rental Price/Day" Binding="{Binding RentalPricePerDay}" Width="*"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding StatusId}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="350,10,0,10" HorizontalAlignment="Left" Grid.ColumnSpan="2">
-            <Button Content="Add" Width="100" Height="30" Click="AddButton_Click" Margin="5" Background="#FF4CAF50" Foreground="White"/>
-            <Button Content="Update" Width="100" Height="30" Click="UpdateButton_Click" Margin="5" Background="#FF2196F3" Foreground="White"/>
-            <Button Content="Delete" Width="100" Height="30" Click="DeleteButton_Click" Margin="5" Background="#FFEF5350" Foreground="White"/>
-            <Button Content="Back" Width="100" Height="30" Click="BackButton_Click" Margin="5" Background="Yellow"/>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,5,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="Brand:" Width="120" VerticalAlignment="Center" FontWeight="Bold" Foreground="#3c6e71"/>
+                <TextBox x:Name="txtBrand" Width="200" Height="25" Background="White" Padding="5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="Model:" Width="120" VerticalAlignment="Center" FontWeight="Bold" Foreground="#3c6e71"/>
+                <TextBox x:Name="txtModel" Width="200" Height="25" Background="White" Padding="5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="License Plate:" Width="120" VerticalAlignment="Center" FontWeight="Bold" Foreground="#3c6e71"/>
+                <TextBox x:Name="txtLicensePlate" Width="200" Height="25" Background="White" Padding="5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="Rental Price/Day:" Width="120" VerticalAlignment="Center" FontWeight="Bold" Foreground="#3c6e71"/>
+                <TextBox x:Name="txtRentalPrice" Width="200" Height="25" Background="White" Padding="5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="Status ID:" Width="120" VerticalAlignment="Center" FontWeight="Bold" Foreground="#3c6e71"/>
+                <TextBox x:Name="txtStatus" Width="200" Height="25" Background="White" Padding="5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                <Button Content="Add" Width="80" Click="AddButton_Click"
+                        Background="#3c6e71" Foreground="White" FontWeight="Bold" 
+                        BorderBrush="Transparent" Padding="5,2"/>
+                <Button Content="Update" Width="80" Margin="5,0,0,0" Click="UpdateButton_Click"
+                        Background="#ff8c42" Foreground="White" FontWeight="Bold"
+                        BorderBrush="Transparent" Padding="5,2"/>
+                <Button Content="Delete" Width="80" Margin="5,0,0,0" Click="DeleteButton_Click"
+                        Background="#f05454" Foreground="White" FontWeight="Bold"
+                        BorderBrush="Transparent" Padding="5,2"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

@@ -5,31 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentalMotorbike"
         mc:Ignorable="d"
-        Title="RentalWindow" Height="450" Width="800">
-    <Grid Margin="0,0,0,2">
+        Title="RentalWindow" Height="450" Width="800"
+        Background="#f2f4f5">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Tiêu đề -->
-        <TextBlock x:Name="lblRentalMotorbike" Text="Rental Motorbike" 
-                   FontSize="24" 
+        <TextBlock x:Name="lblRentalMotorbike" Text="Lịch Sử Thuê Xe" 
+                   FontSize="28" 
                    FontWeight="Bold" 
                    Foreground="#2C3E50" 
                    HorizontalAlignment="Center" 
                    Margin="0,10"/>
 
-        <!-- DataGrid hiển thị lịch sử mượn sách -->
         <DataGrid x:Name="dgRentalMotorbike" 
                   AutoGenerateColumns="False" 
                   Grid.Row="1" 
-                  AlternatingRowBackground="LightGray" 
+                  AlternatingRowBackground="#e8e8e8" 
                   Background="White" 
                   RowBackground="White" 
                   BorderBrush="#2C3E50" 
                   BorderThickness="1"
-                  Margin="10,10,10,98" SelectionChanged="dgRentalMotorbike_SelectionChanged">
+                  Margin="0,10,0,0" 
+                  SelectionChanged="dgRentalMotorbike_SelectionChanged"
+                  FontSize="14" 
+                  FontFamily="Arial">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Motorbike ID" Binding="{Binding MotorbikeId}" Width="*"/>
@@ -40,6 +42,15 @@
                 <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Back" Width="100" Height="30" Click="BackButton_Click" Margin="690,340,10,10" Background="Yellow" Grid.Row="1"/>
+
+        <Button Content="Quay lại" Width="100" Height="35" 
+                Click="BackButton_Click" 
+                Margin="0,10,0,0" 
+                Background="#FF6a5acd" 
+                Foreground="White" 
+                FontWeight="Bold" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom"
+                BorderBrush="Transparent"/>
     </Grid>
 </Window>
